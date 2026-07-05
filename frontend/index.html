@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlashLearn</title>
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<base target="_blank">
+</head>
+<body>
+    <div id="app">
+        <!-- Landing View -->
+        <div id="landing-view" class="view active">
+            <div class="landing-bg"></div>
+            <div class="landing-content">
+                <div class="logo-mark">
+                    <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+                        <rect x="8" y="8" width="48" height="48" rx="12" fill="url(#logoGrad)"/>
+                        <path d="M22 32L30 24L38 32L30 40L22 32Z" fill="white" opacity="0.9"/>
+                        <path d="M30 24L38 32L46 24L38 16L30 24Z" fill="white" opacity="0.6"/>
+                        <defs>
+                            <linearGradient id="logoGrad" x1="8" y1="8" x2="56" y2="56">
+                                <stop offset="0%" stop-color="#6366f1"/>
+                                <stop offset="100%" stop-color="#a855f7"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <h1 class="landing-title">FlashLearn</h1>
+                <p class="landing-subtitle">Master anything, one card at a time</p>
+
+
+                <div class="why-section">
+                    <h3>Why FlashLearn?</h3>
+                    <div class="why-grid">
+                        <div class="why-item">
+                            <div class="why-icon">🧠</div>
+                            <span>Spaced repetition that actually works</span>
+                        </div>
+                        <div class="why-item">
+                            <div class="why-icon">✨</div>
+                            <span>Rich cards with images, audio & video</span>
+                        </div>
+                        <div class="why-item">
+                            <div class="why-icon">📱</div>
+                            <span>Study anywhere, even offline</span>
+                        </div>
+                        <div class="why-item">
+                            <div class="why-icon">🎨</div>
+                            <span>Beautiful, distraction-free design</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="landing-actions">
+                    <button id="btn-create-landing" class="btn-primary btn-landing">
+                        <span class="btn-text">Create Flash Cards</span>
+                        <svg class="btn-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <button id="btn-learn-landing" class="btn-secondary btn-landing hidden">
+                        <span class="btn-text">Learn</span>
+                        <svg class="btn-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Create View -->
+        <div id="create-view" class="view">
+            <div class="create-header">
+                <button id="btn-exit-create" class="btn-icon" title="Exit Deck">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                </button>
+                <h2>Create Deck</h2>
+                <div class="header-spacer"></div>
+            </div>
+
+
+            <div class="create-body">
+                <div class="deck-name-input-wrap">
+                    <input type="text" id="deck-name" class="deck-name-input" placeholder="Name your deck..." autocomplete="off">
+                    <div class="deck-name-line"></div>
+                </div>
+
+
+                <div class="cards-builder">
+                    <div class="card-builder" id="front-builder">
+                        <div class="builder-label">Front</div>
+                        <div class="content-tabs">
+                            <button class="tab-btn active" data-type="text">Text</button>
+                            <button class="tab-btn" data-type="image">Image</button>
+                            <button class="tab-btn" data-type="audio">Audio</button>
+                            <button class="tab-btn" data-type="video">Video</button>
+                            <button class="tab-btn" data-type="drawing">Drawing</button>
+                        </div>
+                        <div class="content-area" id="front-content-area">
+                            <textarea class="content-textarea" placeholder="Enter front content..."></textarea>
+                        </div>
+                    </div>
+
+
+                    <div class="card-builder" id="back-builder">
+                        <div class="builder-label">Back</div>
+                        <div class="content-tabs">
+                            <button class="tab-btn active" data-type="text">Text</button>
+                            <button class="tab-btn" data-type="image">Image</button>
+                            <button class="tab-btn" data-type="audio">Audio</button>
+                            <button class="tab-btn" data-type="video">Video</button>
+                            <button class="tab-btn" data-type="drawing">Drawing</button>
+                        </div>
+                        <div class="content-area" id="back-content-area">
+                            <textarea class="content-textarea" placeholder="Enter back content..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+
+                <button id="btn-add-card" class="btn-add">
+                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                        <path d="M14 6V22M6 14H22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                    </svg>
+                </button>
+
+
+                <div class="deck-preview">
+                    <div class="deck-preview-header">
+                        <span class="deck-preview-name" id="preview-deck-name">Untitled Deck</span>
+                        <span class="deck-preview-count" id="preview-card-count">0 cards</span>
+                    </div>
+                    <div class="deck-preview-cards" id="deck-preview-cards"></div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Decks List View -->
+        <div id="decks-view" class="view">
+            <div class="decks-header">
+                <button id="btn-back-decks" class="btn-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                </button>
+                <h2>Your Decks</h2>
+                <div class="header-spacer"></div>
+            </div>
+
+
+            <div class="decks-body">
+                <div class="decks-grid" id="decks-grid"></div>
+                <div class="empty-state hidden" id="decks-empty">
+                    <div class="empty-illustration">
+                        <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
+                            <rect x="20" y="20" width="80" height="80" rx="16" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2"/>
+                            <rect x="35" y="40" width="50" height="6" rx="3" fill="#cbd5e1"/>
+                            <rect x="35" y="55" width="35" height="6" rx="3" fill="#cbd5e1"/>
+                            <rect x="35" y="70" width="45" height="6" rx="3" fill="#cbd5e1"/>
+                            <circle cx="85" cy="85" r="18" fill="#6366f1" opacity="0.15"/>
+                            <path d="M78 85L83 90L93 80" stroke="#6366f1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3>No decks yet</h3>
+                    <p>Create your first deck to start learning!</p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Study View -->
+        <div id="study-view" class="view">
+            <div class="study-header">
+                <button id="btn-exit-study" class="btn-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                </button>
+                <div class="study-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="study-progress-fill"></div>
+                    </div>
+                    <span class="progress-text" id="study-progress-text">1 / 10</span>
+                </div>
+                <div class="header-spacer"></div>
+            </div>
+
+
+            <div class="study-body">
+                <div class="flashcard-container" id="flashcard-container">
+                    <div class="flashcard" id="flashcard">
+                        <div class="flashcard-face flashcard-front" id="card-front">
+                            <div class="card-content" id="card-front-content"></div>
+                            <div class="card-hint">Tap to flip</div>
+                        </div>
+                        <div class="flashcard-face flashcard-back" id="card-back">
+                            <div class="card-content" id="card-back-content"></div>
+                            <div class="card-hint">Tap to flip back</div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="study-actions">
+                    <button id="btn-prev" class="btn-study-nav">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 15l-5-5 5-5"/>
+                        </svg>
+                        Previous
+                    </button>
+
+
+                    <div class="review-buttons">
+                        <button id="btn-repeat" class="btn-review btn-repeat">
+                            <span class="review-label">Repeat</span>
+                            <span class="review-sub">Again today</span>
+                        </button>
+                        <button id="btn-hard" class="btn-review btn-hard">
+                            <span class="review-label">Hard</span>
+                            <span class="review-sub">Daily</span>
+                        </button>
+                        <button id="btn-good" class="btn-review btn-good">
+                            <span class="review-label">Good</span>
+                            <span class="review-sub">Next week</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Toast -->
+        <div id="toast" class="toast">
+            <span id="toast-message"></span>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
